@@ -17,17 +17,18 @@ function PostsList()
     useEffect(()=>{
         fetchAllPosts();
         console.log("called");
-    })
+    },[fetchAllPosts, fetchPosts])
     
     useEffect(() => {
         if(localStorage.getItem("data") && prev)
         {
             setList(JSON.parse(localStorage.getItem("data")));
+            localStorage.removeItem("data");
             return;
         }
         setLoading(true);
-        setTimeout(()=> fetchPosts(), 2000);
-      }, [currPage, prev])
+        setTimeout(()=> fetchPosts(),1000);
+      }, [currPage,prev,])
     
     function fetchPosts()
     {
@@ -67,7 +68,7 @@ function PostsList()
         if (currPage > 0) 
         {
             setPrev(true);
-          setCurrPage(currPage - 10);
+            setCurrPage(currPage - 10);
         }
     };
       
