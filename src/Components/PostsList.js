@@ -17,7 +17,7 @@ function PostsList()
     useEffect(()=>{
         fetchAllPosts();
         console.log("called");
-    },[])
+    })
     
     
     useEffect(() => {
@@ -28,7 +28,7 @@ function PostsList()
             return;
         }
         setLoading(true);
-        setTimeout(()=> fetchPosts(),1000);
+        setTimeout(()=> fetchPosts(),100);
       }, [currPage,prev,])
     
     const fetchPosts = useCallback(e =>
@@ -48,7 +48,7 @@ function PostsList()
                 setLoading(false);
                 setErrorMsg(true);
             })
-    },[list])
+    })
 
     const fetchAllPosts =useCallback(e =>
     {
@@ -63,7 +63,7 @@ function PostsList()
             {
                 console.log("There was an error!");
             })
-    },[list])
+    })
     
     const handlePrevClick = () => {
         if (currPage > 0) 
