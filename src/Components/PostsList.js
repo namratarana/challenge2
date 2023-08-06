@@ -48,7 +48,7 @@ function PostsList()
                 setLoading(false);
                 setErrorMsg(true);
             })
-    })
+    },[list])
 
     const fetchAllPosts =useCallback(e =>
     {
@@ -63,7 +63,7 @@ function PostsList()
             {
                 console.log("There was an error!");
             })
-    })
+    },[list])
     
     const handlePrevClick = () => {
         if (currPage > 0) 
