@@ -10,7 +10,7 @@ function NewPost()
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [message, setMessage] = useState(""); 
-    const [error, setError] = useState("")
+    // const [error, setError] = useState("")
     
     const navigate = useNavigate();
     
@@ -18,7 +18,7 @@ function NewPost()
     {
     // Prevent the default submit and page reload
         e.preventDefault();
-        setError("")
+        // setError("")
 
         // Handle validations
         axios.post(`https://jsonplaceholder.typicode.com/posts`, { title, desc })   
@@ -35,7 +35,7 @@ function NewPost()
         .catch(err =>
             {
                 console.log(err);
-                setError(err.message)
+                // setError(err.message)
             }
         );
 

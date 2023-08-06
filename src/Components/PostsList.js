@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import '../Components/PostsList.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import ReactPaginate from 'react-paginate';
 
 function PostsList()
@@ -27,7 +27,7 @@ function PostsList()
         }
         setLoading(true);
         setTimeout(()=> fetchPosts(), 3000);
-      }, [currPage])
+      }, [currPage, prev])
     
     const fetchPosts = () =>
     {
