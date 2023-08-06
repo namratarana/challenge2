@@ -93,9 +93,9 @@ function PostsList()
             <div className="container">
             {
                 list.length>0?
-                list.map( post => (
-                    <Link to={`/postDetails/posts/${post.id}`} style={{textDecorationLine:"none"}}>
-                        <div className="post">
+                list.map( (post) => (
+                    <Link key={post.id} to={`/postDetails/posts/${post.id}`} style={{textDecorationLine:"none"}}>
+                        <div className="post" >
                             <div className="Heading">
                                 <p>{post.title}</p> 
                             </div>
@@ -111,7 +111,7 @@ function PostsList()
                 </div>
                 {loading? 
                     <div style={{textAlign:"center"}}>
-                        <span class="loader"></span>
+                        <span className="loader"></span>
                     </div>
                     :!errorMsg ? <div className="prev-next">
                     <button onClick={handlePrevClick} disabled={currPage === 0} className="new-post">Previous</button>
