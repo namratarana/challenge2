@@ -17,7 +17,7 @@ function PostsList()
     useEffect(()=>{
         fetchAllPosts();
         console.log("called");
-    },[])
+    })
     
     useEffect(() => {
         if(localStorage.getItem("data") && prev)
@@ -26,10 +26,10 @@ function PostsList()
             return;
         }
         setLoading(true);
-        setTimeout(()=> fetchPosts(), 3000);
+        setTimeout(()=> fetchPosts(), 2000);
       }, [currPage, prev])
     
-    const fetchPosts = () =>
+    function fetchPosts()
     {
         const start = currPage;
         axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=10`)
@@ -48,7 +48,7 @@ function PostsList()
             })
     }
 
-    const fetchAllPosts = () =>
+    function fetchAllPosts()
     {
         axios.get("https://jsonplaceholder.typicode.com/posts")
         .then(res=>

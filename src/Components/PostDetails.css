@@ -10,9 +10,10 @@
 }
 .flex-items
 {
-    height: 4vh;
+    height: auto;
     width: 80vw;
     text-align: center;
+    padding: 1em;
     background-color: rgb(221, 230, 105);
     border: 1px solid black;
     
