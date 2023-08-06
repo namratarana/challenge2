@@ -33,7 +33,10 @@ function NewPost()
 
             })
         .catch(err =>
-            setError(err.message)
+            {
+                console.log(err);
+                setError(err.message)
+            }
         );
 
     }
