@@ -1,0 +1,19 @@
+
+.detail-box
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: pink;
+    border: 2px solid black;
+    margin-top: 2rem;
+}
+.flex-items
+{
+    height: 4vh;
+    width: 80vw;
+    text-align: center;
+    background-color: rgb(221, 230, 105);
+    border: 1px solid black;
+    
+}
