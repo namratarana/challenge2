@@ -31,8 +31,7 @@ function PostsList()
         setTimeout(()=> fetchPosts(),1000);
       }, [currPage,prev,])
     
-    useCallback(()=>{},[fetchAllPosts, fetchPosts]);
-    function fetchPosts()
+    const fetchPosts = useCallback(e =>
     {
         const start = currPage;
         axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=10`)
@@ -49,9 +48,9 @@ function PostsList()
                 setLoading(false);
                 setErrorMsg(true);
             })
-    }
+    })
 
-    function fetchAllPosts()
+    const fetchAllPosts =useCallback(e =>
     {
         axios.get("https://jsonplaceholder.typicode.com/posts")
         .then(res=>
@@ -64,7 +63,7 @@ function PostsList()
             {
                 console.log("There was an error!");
             })
-    }
+    })
     
     const handlePrevClick = () => {
         if (currPage > 0) 
