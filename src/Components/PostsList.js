@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import axios from 'axios';
 import '../Components/PostsList.css';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,8 @@ function PostsList()
     useEffect(()=>{
         fetchAllPosts();
         console.log("called");
-    },[fetchAllPosts, fetchPosts])
+    },[])
+    
     
     useEffect(() => {
         if(localStorage.getItem("data") && prev)
@@ -30,6 +31,7 @@ function PostsList()
         setTimeout(()=> fetchPosts(),1000);
       }, [currPage,prev,])
     
+    useCallback(()=>{},[fetchAllPosts, fetchPosts]);
     function fetchPosts()
     {
         const start = currPage;
