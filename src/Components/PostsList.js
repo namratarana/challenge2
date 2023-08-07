@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import '../Components/PostsList.css';
 import { Link } from 'react-router-dom';
@@ -17,10 +17,29 @@ function PostsList()
     useEffect(()=>{
         fetchAllPosts();
         console.log("called");
-    })
+    },[])
     
     
     useEffect(() => {
+        const fetchPosts =() =>
+        {
+            const start = currPage;
+            axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=10`)
+            .then(res=>
+                {
+                    console.log(res.data.length);
+                    setList(res.data);
+                    setLoading(false);
+    
+                }) 
+            .catch(err=>
+                {
+                    console.log("There was an error!");
+                    setLoading(false);
+                    setErrorMsg(true);
+                })
+        }
+        
         if(localStorage.getItem("data") && prev)
         {
             setList(JSON.parse(localStorage.getItem("data")));
@@ -29,28 +48,10 @@ function PostsList()
         }
         setLoading(true);
         setTimeout(()=> fetchPosts(),100);
-      }, [currPage,prev,])
+      }, [currPage,prev])
     
-    const fetchPosts = useCallback(e =>
-    {
-        const start = currPage;
-        axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=10`)
-        .then(res=>
-            {
-                console.log(res.data.length);
-                setList(res.data);
-                setLoading(false);
 
-            }) 
-        .catch(err=>
-            {
-                console.log("There was an error!");
-                setLoading(false);
-                setErrorMsg(true);
-            })
-    })
-
-    const fetchAllPosts =useCallback(e =>
+    const fetchAllPosts =() =>
     {
         axios.get("https://jsonplaceholder.typicode.com/posts")
         .then(res=>
@@ -63,7 +64,7 @@ function PostsList()
             {
                 console.log("There was an error!");
             })
-    })
+    }
     
     const handlePrevClick = () => {
         if (currPage > 0) 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -11,14 +11,7 @@ function PostsDetails()
     console.log("id is : ", id);
     const [postDetail, setPostDetail] = useState({});
 
-    useEffect(() => 
-    {
-        fetchPostDetails()
-    }, [])
-
-
-    const fetchPostDetails = () => 
-    {
+    const fetchPostDetails = useCallback(() => {
         axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
         .then(response => 
             {
@@ -29,9 +22,14 @@ function PostsDetails()
             {
                 console.log("ID does not exists");
             })
-    }
-      
-        
+    }, [id])
+
+    useEffect(() => 
+    {
+        fetchPostDetails()
+    }, [fetchPostDetails])
+
+    
     return(
         <div>
             
